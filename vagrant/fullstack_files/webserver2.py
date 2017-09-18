@@ -1,12 +1,15 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import cgi
 
+## import CRUD Operations##
+from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Restaurant, MenuItem
+
 
 import re #For regex functionality
 
+##Create session and connect to DB
 engine = create_engine('sqlite:///restaurantmenu.db') #I should try running postgres and see if that works
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
