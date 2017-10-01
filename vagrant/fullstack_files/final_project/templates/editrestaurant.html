@@ -11,10 +11,10 @@
   </head>
   <body>
     <div class ="container">
-      <h1>Edit Restuarant: {{restaurant_id}}</h1>
-    <form action="{{ url_for('editRestaurant', restaurant_id=restaurant_id)}}" method="post">
+      <h1>Edit Restuarant: {{restaurant.name}}</h1>
+      <form action="{{ url_for('editRestaurant', restaurant_id=restaurant.id)}}" method="post">
         <p>If you would like to change the name of the restaurant, please input the new name below.</p>
-        <input type="text" size="30" name="name" placeholder="{{restaurant_id}}">
+        <input type="text" size="30" name="name" placeholder="{{restaurant.name}}">
         <input type="submit" value="Confirm">
         <a class = "nexttobutton" href="{{ url_for('showRestaurants')}}">Cancel</a>
       </form>

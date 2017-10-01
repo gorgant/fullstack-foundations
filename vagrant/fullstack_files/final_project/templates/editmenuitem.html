@@ -11,24 +11,23 @@
   </head>
   <body>
     <div class ="container">
-      <h1>Edit Menu Item: {{menu_item['name']}}</h1>
-      <form action="{{ url_for('editMenuItem', restaurant_id=restaurant_id, menu_id = menu_item['id'])}}" method="post">
+      <h1>Edit Menu Item: {{menu_item.name}}</h1>
+      <form action="{{ url_for('editMenuItem', restaurant_id=menu_item.restaurant_id, menu_id = menu_item.id)}}" method="post">
           <p>If you would like to change the name of the menu item, please input the details below.</p>
           <p>
             <strong>Name:<br></strong>
-            <input type="text" size="30" name="name" placeholder="{{menu_item['name']}}">
+            <input type="text" size="30" name="name" placeholder="{{menu_item.name}}">
           </p>
           <p>
             <strong>Description:<br></strong>
-            <textarea type="textarea" rows="3" cols="80" name="description" placeholder="{{menu_item['description']}}"></textarea>
+            <textarea type="textarea" rows="3" cols="80" name="description" placeholder="{{menu_item.description}}"></textarea>
           </p>
           <p>
             <strong>Price:<br></strong>
-            <input type="text" size="30" name="price" placeholder="{{menu_item['price']}}">
+            <input type="text" size="30" name="price" placeholder="{{menu_item.price}}">
           </p>
           <p>
             <strong>Course:<br></strong>
-
             <select name = "course">
               <option id="Appetizer" value="appetizer">Appetizer</option>
               <option id="Entree" value="entree">Entree</option>
@@ -46,7 +45,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript"> // this assigns the appropriate course to the dropdown item
-      var menuItemCourse = '{{menu_item["course"]}}'.toLowerCase();
+      var menuItemCourse = '{{menu_item.course}}'.toLowerCase();
       $(`select option[value=${menuItemCourse}]`).attr("selected","selected"); //Note the backwards quotes to activate that ${} functionality -- normal quotes won't work
     </script>
 

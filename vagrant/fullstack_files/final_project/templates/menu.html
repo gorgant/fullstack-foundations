@@ -13,7 +13,7 @@
     <div class ="container">
       <div class="row">
         <div class="col-12">
-          <h1>Menu for: {{restaurant_id}}</h1>
+          <h1>Menu for: {{menu_items.id}}</h1>
         </div>
       </div>
       <div class="row">
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Pulls in all the menu items, which get filed into their appropriate section above using the script at the bottom of this document -->
-        {% for i in menu_item_list %}
+        {% for i in menu_items %}
         <div class="{{i.course}}">
           <div class="row">
             <div class="col-6 menuItemName">

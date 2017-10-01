@@ -70,7 +70,9 @@
           <a href="{{url_for('showMenu', restaurant_id = r.id)}}">{{r.name}}</a>
         </div>
         <div class="col-4">
-          <p>5</p>
+          <p>
+            {{getMenuItemCount(r.id)}}
+          </p>
         </div>
         <div class="col-4">
           <div class="float-right">
