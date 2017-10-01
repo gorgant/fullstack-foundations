@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div class ="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Menu for: {{restaurant_id}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p class="lead">
+            Below are the various menu items offered by {{restaurant_id}}. Please review at your leisure and keep in mind that all prices are subject to local tax and gratuitous gratutiy.
+          </p>
+        </div>
+      </div>
+
+      <!-- This is for flashing updates -->
+      <div class="row">
+        <div class="col-12">
+          <div class = "flash">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <ul>
+              {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+              {% endfor %}
+              </ul>
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+      <!-- End flashing section -->
+
+      <div class="row">
+        <div class="col-8">
+          <h2>Le Menu</h2>
+        </div>
+        <div class="col-4">
+          <div class="float-right">
+            <a href="{{url_for('newMenuItem', restaurant_id = restaurant_id)}}" class="btn btn-primary" role="button">Add New Menu Item</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menuSection">
+        <div class="row">
+          <div class="col-12" id="appetizer-section">
+            <h2 class="menuSectionHeader text-center"><small>~Aperitif~</small></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12" id="entree-section">
+            <h2 class="menuSectionHeader text-center"><small>~Entree~</small></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12" id="dessert-section">
+            <h2 class="menuSectionHeader text-center"><small>~Digestif~</small></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12" id="beverage-section">
+            <h2 class="menuSectionHeader text-center"><small>~Beverage~</small></h2>
+          </div>
+        </div>
+
+        <!-- Pulls in all the menu items, which get filed into their appropriate section above using the script at the bottom of this document -->
+        {% for i in menu_item_list %}
+        <div class="{{i.course}}">
+          <div class="row">
+            <div class="col-6 menuItemName">
+              {{i.name}}
+            </div>
+            <div class="col-2 menuItemPrice">
+              {{i.price}}
+            </div>
+            <div class="col-4">
+              <div class="float-right">
+                <a class = "nexttolink" href="{{url_for('editMenuItem', restaurant_id = i.restaurant_id, menu_id = i.id)}}">Edit</a>
+                <a class = "nexttolink" href="{{url_for('deleteMenuItem', restaurant_id = i.restaurant_id, menu_id = i.id)}}">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 menuItemDescription">
+              <p> {{i.description}} </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-12">
+            <a href="{{url_for('showRestaurants')}}" class="btn btn-default backButton" role="button">Back to Restaurants</a>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- This script files the menu items under their appropriate menu section -->
+    <script type="text/javascript">
+      $('.Appetizer').appendTo('#appetizer-section');
+      $('.Entree').appendTo('#entree-section');
+      $('.Dessert').appendTo('#dessert-section');
+      $('.Beverage').appendTo('#beverage-section');
+    </script>
+  </body>
+</html>

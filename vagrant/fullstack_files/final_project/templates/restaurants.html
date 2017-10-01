@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div class ="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Welcome to Le Restauranteur</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p class="lead">
+            Below are the restaurants available for your perusing. We feature only the finest cuisine from the most exotic regions of the planet, and beyond. We hope you enjoy our highly curated selection.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class = "flash">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <ul>
+              {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+              {% endfor %}
+              </ul>
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <h2>Our Restaurant Selection</h2>
+        </div>
+        <div class="col-4">
+          <div class="float-right">
+            <a href="{{url_for('newRestaurant')}}" class="btn btn-primary" role="button">Add New Restaurant</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <h5>Restaurant Name</h5>
+        </div>
+        <div class="col-4">
+          <h5># of Menu Items</h5>
+        </div>
+        <div class="col-4">
+  <!--         <div class="float-right">
+            <h5>Actions</h5>
+          </div> -->
+        </div>
+      </div>
+
+      {% for r in restaurant_list %}
+      <div class="row">
+        <div class="col-4">
+          <a href="{{url_for('showMenu', restaurant_id = r.id)}}">{{r.name}}</a>
+        </div>
+        <div class="col-4">
+          <p>5</p>
+        </div>
+        <div class="col-4">
+          <div class="float-right">
+            <a class = "nexttolink" href="{{url_for('editRestaurant', restaurant_id = r.id)}}">Edit</a>
+            <a class = "nexttolink" href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">Delete</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

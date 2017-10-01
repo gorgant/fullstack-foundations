@@ -1,0 +1,46 @@
+h1,h5 {
+  margin-top: 15px;
+}
+
+h2 {
+  font-size: 31px
+}
+
+.container {
+  min-width: 570px;
+}
+
+a.nexttobutton {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+a.nexttolink {
+  margin-right: 20px;
+}
+
+.menuItemName {
+  font-weight: bold;
+}
+
+.menuItemDescription {
+  font-style: italic;
+}
+
+.menuSection {
+  margin-top: 20px;
+  background-color: #ede8cb;
+  padding: 5px 20px 5px 20px;
+  border-radius: 10px;
+}
+
+.backButton {
+  margin-top: 20px;
+}
+
+.menuSectionHeader {
+  font-style: italic;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
